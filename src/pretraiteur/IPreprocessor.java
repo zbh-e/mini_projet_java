@@ -1,6 +1,10 @@
+package pretraiteur;
+
+import modeles.*;
+
 public interface IPreprocessor {
-  
-    Name process(Name name);
-    
-    String getName();
+
+    Nom process(Nom nom);
+
+    String getNom();
 }
