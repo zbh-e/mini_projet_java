@@ -1,10 +1,6 @@
-package pretraiteur;
-
 import java.text.Normalizer;
 import java.util.Locale;
 import java.util.Objects;
-
-import modeles.*;
 
 public final class NormalizationPreprocessor extends Preprocessor {
 
@@ -22,7 +18,7 @@ public final class NormalizationPreprocessor extends Preprocessor {
     }
 
     @Override
-    protected Name doProcess(Name name) {
+    protected Nom doProcess(Nom name) {
         String value = name.getNormalized();
 
         value = value.toLowerCase(locale);

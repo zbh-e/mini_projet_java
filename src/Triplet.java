@@ -1,6 +1,4 @@
-package modeles;
-
-public class Triplet {
+ublic class Triplet {
     private Nom nom1;
     private Nom nom2;
     private Double score;

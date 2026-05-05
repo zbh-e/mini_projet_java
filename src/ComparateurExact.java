@@ -1,7 +1,3 @@
-package comparateur;
-
-import modeles.*;
-
 public class ComparateurExact implements Comparateur {
 
     @Override
