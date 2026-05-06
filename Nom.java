@@ -10,8 +10,9 @@ public class Nom {
         this.id = id;
     }
 
-    public Nom(List<String> nomTraite) {
-        
+    public Nom(String nomOriginal, String id,List<String> nomTraite) {
+        this.nomOriginal = nomOriginal;
+        this.id = id;
         this.nomTraite = nomTraite;
     }
 
