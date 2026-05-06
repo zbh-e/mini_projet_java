@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run TestComparateur",
+            "request": "launch",
+            "mainClass": "TestComparateur",
+            "cwd": "${workspaceFolder}",
+            "classPaths": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/lib/*"
+            ],
+            "preLaunchTask": "compile"
+        }
+    ]
+}
