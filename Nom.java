@@ -1,25 +1,34 @@
-public class Nom{
-    private String nomOriginal ;
-    private String [] nomTraite;
-    private int id ;
-    public String getNomOriginal (){
+import java.util.List;
+
+public class Nom {
+    private String nomOriginal;
+    private List<String> nomTraite;
+    private String id;
+
+    public Nom(String nomOriginal, String id) {
+        this.nomOriginal = nomOriginal;
+        this.id = id;
+    }
+
+    public Nom(List<String> nomTraite) {
+        
+        this.nomTraite = nomTraite;
+    }
+
+    public String getNomOriginal() {
         return nomOriginal;
     }
-    public String [] getNomTraite (){
-        return nomTraite;
-    }
-    public int getId (){
+
+    public String getId() {
         return id;
     }
 
-    public Nom (String s,int id){
-        nomOriginal=s;
-        this.id=id;
-
-
+    public List<String> getNomTraite() {
+        return nomTraite;
     }
 
-
-
+    public void setNomTraite(List<String> nomTraite) {
+        this.nomTraite = nomTraite;
+    }
 
 }
