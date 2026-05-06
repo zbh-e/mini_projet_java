@@ -18,7 +18,7 @@ public class Main {
         resultat.add(new Triplet(new Nom("marjjj","5"),new Nom("allawi","5"),661));
 
 
-        SelectionneurParScore s=new SelectionneurParScore(100);
+        SelectionneurParNombre s=new SelectionneurParNombre(100);
         List<Triplet> resultatSelectionner;
         resultatSelectionner=s.selectionner(resultat);
 

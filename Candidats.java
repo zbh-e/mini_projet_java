@@ -1,6 +1,9 @@
 public class Candidats {
     private Nom nom1;
     private Nom nom2;
+    
+    
+    
     public Nom getnom1(){
         return nom1;        
     }
