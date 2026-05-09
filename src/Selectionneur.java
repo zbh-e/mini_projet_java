@@ -1,7 +1,6 @@
-public class Selectionneur {
-    
-    
-   public Triplet[] selectionner (Triplet[]){}
 
+import java.util.List;
+public interface Selectionneur {
+    List<Triplet> selectionner(List<Triplet> l);
     
 }

@@ -1,6 +1,7 @@
+
+import java.util.List;
+
 public interface GenerateurDesCandidats {
-    Candidats [] genererCandidats(Nom[] l1,Nom[] l2); 
+    List<Candidats> genererCandidats(List<Nom> l1, List<Nom> l2);
 
-
-    
-} 
+}

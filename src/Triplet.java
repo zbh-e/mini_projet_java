@@ -1,8 +1,20 @@
-ublic class Triplet {
+public class Triplet {
+    private double score;
     private Nom nom1;
     private Nom nom2;
-    private Double score;
-
+    public Triplet(Nom nom1,Nom nom2,int s){
+        this.nom1=nom1;
+        this.nom2=nom2;
+        this.score=s;
+    }
+    public Nom getNom1(){
+        return nom1;
+    }
+    public Nom getNom2(){
+        return nom2;
+    }
+    public double getScore(){
+        return score;
+    }
+    
 }
-// plus de modification....
-// cette class peut etre supprimée ou fusionnée avec une autre class

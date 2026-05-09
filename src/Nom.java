@@ -1,6 +1,5 @@
 import java.util.List;
 
-
 public class Nom {
     private String nomOriginal;
     private List<String> nomTraite;
