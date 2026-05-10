@@ -2,7 +2,6 @@ import java.text.Normalizer;
 import java.util.Objects;
 import java.util.List;
 
-
 public final class NormalizationPretraiteur extends Pretraiteur {
 
     public NormalizationPretraiteur() {
@@ -26,5 +25,4 @@ public final class NormalizationPretraiteur extends Pretraiteur {
         return nom;
     }
 
-    
 }

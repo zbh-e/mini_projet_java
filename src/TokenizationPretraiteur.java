@@ -6,13 +6,11 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
 public final class TokenizationPretraiteur extends Pretraiteur {
 
-    private static final Pattern DEFAULT_DELIMITER =
-            Pattern.compile("[\\s\\-\\.'']+");
+    private static final Pattern DEFAULT_DELIMITER = Pattern.compile("[\\s\\-\\.'']+");
 
-    private final Pattern     delimiter;
+    private final Pattern delimiter;
     private final Set<String> stopWords;
 
     public TokenizationPretraiteur(Pattern delimiter, Set<String> stopWords) {
@@ -21,8 +19,8 @@ public final class TokenizationPretraiteur extends Pretraiteur {
         this.stopWords = stopWords != null
                 ? Collections.unmodifiableSet(
                         stopWords.stream()
-                                 .map(String::toLowerCase)
-                                 .collect(Collectors.toSet()))
+                                .map(String::toLowerCase)
+                                .collect(Collectors.toSet()))
                 : Set.of();
     }
 
@@ -30,11 +28,10 @@ public final class TokenizationPretraiteur extends Pretraiteur {
         this(DEFAULT_DELIMITER, Set.of());
     }
 
-    
     public static TokenizationPretraiteur withCommonStopWords() {
         Set<String> sw = new HashSet<>(
                 Arrays.asList("ben", "bel", "el", "al", "de", "du", "le", "la",
-                              "les", "dit", "ou", "et"));
+                        "les", "dit", "ou", "et"));
         return new TokenizationPretraiteur(DEFAULT_DELIMITER, sw);
     }
 
@@ -52,6 +49,11 @@ public final class TokenizationPretraiteur extends Pretraiteur {
         return nom;
     }
 
-    public Pattern     getDelimiter() { return delimiter; }
-    public Set<String> getStopWords() { return stopWords; }
+    public Pattern getDelimiter() {
+        return delimiter;
+    }
+
+    public Set<String> getStopWords() {
+        return stopWords;
+    }
 }

@@ -1,17 +1,15 @@
 import java.util.List;
 import java.util.Objects;
 
-<<<<<<< HEAD
-=======
 /**
  * Représente un nom dans le pipeline de traitement.
  *
  * Cycle de vie :
- *   1. nomOriginal  — valeur brute saisie / chargée
- *   2. nomNormalise — après les étapes de normalisation (casse, accents, espaces, etc.)
- *   3. nomTraite    — tokens finaux après tokenisation / filtrage
+ * 1. nomOriginal — valeur brute saisie / chargée
+ * 2. nomNormalise — après les étapes de normalisation (casse, accents, espaces,
+ * etc.)
+ * 3. nomTraite — tokens finaux après tokenisation / filtrage
  */
->>>>>>> origin/zied
 public class Nom {
 
     private final String id;
@@ -24,7 +22,7 @@ public class Nom {
     private List<String> nomTraite;
 
     // ------------------------------------------------------------------ //
-    //  Constructeurs
+    // Constructeurs
     // ------------------------------------------------------------------ //
 
     /**
@@ -33,8 +31,8 @@ public class Nom {
      * {@code nomOriginal} pour que les préprocesseurs puissent chaîner.
      */
     public Nom(String id, String nomOriginal) {
-        this.id           = Objects.requireNonNull(id,          "id must not be null");
-        this.nomOriginal  = Objects.requireNonNull(nomOriginal, "nomOriginal must not be null");
+        this.id = Objects.requireNonNull(id, "id must not be null");
+        this.nomOriginal = Objects.requireNonNull(nomOriginal, "nomOriginal must not be null");
         this.nomNormalise = nomOriginal; // point de départ de la normalisation
     }
 
@@ -46,7 +44,7 @@ public class Nom {
     }
 
     // ------------------------------------------------------------------ //
-    //  Getters / Setters
+    // Getters / Setters
     // ------------------------------------------------------------------ //
 
     public String getId() {
@@ -73,17 +71,14 @@ public class Nom {
         this.nomTraite = Objects.requireNonNull(nomTraite, "nomTraite must not be null");
     }
 
-<<<<<<< HEAD
-=======
     // ------------------------------------------------------------------ //
-    //  Utilitaires
+    // Utilitaires
     // ------------------------------------------------------------------ //
 
     @Override
     public String toString() {
         return "Nom{id='" + id + "', original='" + nomOriginal
-             + "', normalise='" + nomNormalise
-             + "', traite=" + nomTraite + "}";
+                + "', normalise='" + nomNormalise
+                + "', traite=" + nomTraite + "}";
     }
->>>>>>> origin/zied
 }

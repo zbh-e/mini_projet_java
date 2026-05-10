@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-
 public final class AbbreviationPretraiteur extends Pretraiteur {
 
     /** Dictionnaire d'abréviations → formes développées. */
@@ -35,29 +34,28 @@ public final class AbbreviationPretraiteur extends Pretraiteur {
         // Nettoyage des espaces consécutifs éventuels
         value = value.replaceAll("\\s+", " ").trim();
         nom.setNomNormaliser(value);
-        nom.setNomtraiter(List.of(value));
+        nom.setNomTraiter(List.of(value));
         return nom;
     }
 
-    public Map<String, String> getDictionary() { return dictionary; }
-
-    
+    public Map<String, String> getDictionary() {
+        return dictionary;
+    }
 
     private static Map<String, String> buildDefaultDictionary() {
         Map<String, String> map = new HashMap<>();
 
         // Titres de civilité
-        map.put("mr",   "monsieur");
-        map.put("mme",  "madame");
-        map.put("mle",  "mademoiselle");
-        map.put("dr",   "docteur");
-        map.put("pr",   "professeur");
-        map.put("me",   "maitre");
+        map.put("mr", "monsieur");
+        map.put("mme", "madame");
+        map.put("mle", "mademoiselle");
+        map.put("dr", "docteur");
+        map.put("pr", "professeur");
+        map.put("me", "maitre");
 
         // Prénoms / prénoms composés courants
-        map.put("st",   "saint");
-        map.put("ste",  "sainte");
-
+        map.put("st", "saint");
+        map.put("ste", "sainte");
 
         return map;
     }

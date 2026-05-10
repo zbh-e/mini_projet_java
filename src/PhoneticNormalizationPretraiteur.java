@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public final class PhoneticNormalizationPretraiteur extends Pretraiteur {
 
-    
     public record Rule(String pattern, String replacement) {
         public Rule {
             if (pattern == null || pattern.isBlank())
@@ -21,12 +19,9 @@ public final class PhoneticNormalizationPretraiteur extends Pretraiteur {
         this.rules = List.copyOf(rules);
     }
 
-    
     public PhoneticNormalizationPretraiteur() {
         this(buildDefaultRules());
     }
-
-    
 
     @Override
     protected Nom faireTraitement(Nom nom) {
@@ -38,13 +33,13 @@ public final class PhoneticNormalizationPretraiteur extends Pretraiteur {
 
         value = value.replaceAll("\\s+", " ").trim();
         nom.setNomNormaliser(value);
-        nom.setNomtraiter(List.of(value));
+        nom.setNomTraiter(List.of(value));
         return nom;
     }
 
-    public List<Rule> getRules() { return rules; }
-
-    
+    public List<Rule> getRules() {
+        return rules;
+    }
 
     private static List<Rule> buildDefaultRules() {
         List<Rule> rules = new ArrayList<>();

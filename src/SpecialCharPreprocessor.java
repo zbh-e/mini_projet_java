@@ -1,19 +1,17 @@
 import java.util.regex.Pattern;
 
-
 public final class SpecialCharPreprocessor extends Preprocessor {
 
     /** Caractères qui seront remplacés par un espace. */
-    private static final Pattern REPLACE_BY_SPACE =
-            Pattern.compile("[\\-_/'\"&@#()\\[\\]{}|\\\\]");
+    private static final Pattern REPLACE_BY_SPACE = Pattern.compile("[\\-_/'\"&@#()\\[\\]{}|\\\\]");
 
     /** Caractères supprimés sans remplacement (ponctuation finale, etc.). */
-    private static final Pattern REMOVE_SILENTLY =
-            Pattern.compile("[.,;:!?*%$€£¥]");
+    private static final Pattern REMOVE_SILENTLY = Pattern.compile("[.,;:!?*%$€£¥]");
 
-    /** Tout caractère autre qu'une lettre ou un chiffre ou un espace (filet final). */
-    private static final Pattern NON_ALPHANUM =
-            Pattern.compile("[^\\p{L}\\p{N}\\s]");
+    /**
+     * Tout caractère autre qu'une lettre ou un chiffre ou un espace (filet final).
+     */
+    private static final Pattern NON_ALPHANUM = Pattern.compile("[^\\p{L}\\p{N}\\s]");
 
     private final boolean strictMode;
 
@@ -51,5 +49,7 @@ public final class SpecialCharPreprocessor extends Preprocessor {
         return nom;
     }
 
-    public boolean isStrictMode() { return strictMode; }
+    public boolean isStrictMode() {
+        return strictMode;
+    }
 }

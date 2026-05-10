@@ -20,7 +20,7 @@ public abstract class Pretraiteur implements IPretraiteur {
 
         if (result == null) {
             throw new IllegalStateException(
-                "[" + getName() + "] faireTraitement() a retourné null pour : " + nom.getNomOriginal());
+                    "[" + getName() + "] faireTraitement() a retourné null pour : " + nom.getNomOriginal());
         }
         return result;
     }
