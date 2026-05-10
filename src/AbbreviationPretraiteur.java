@@ -1,6 +1,7 @@
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,7 @@ public final class AbbreviationPretraiteur extends Pretraiteur {
         // Nettoyage des espaces consécutifs éventuels
         value = value.replaceAll("\\s+", " ").trim();
         nom.setNomNormaliser(value);
+        nom.setNomtraiter(List.of(value));
         return nom;
     }
 

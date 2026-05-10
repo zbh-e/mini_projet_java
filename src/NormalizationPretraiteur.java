@@ -1,5 +1,6 @@
 import java.text.Normalizer;
 import java.util.Objects;
+import java.util.List;
 
 
 public final class NormalizationPretraiteur extends Pretraiteur {
@@ -21,6 +22,7 @@ public final class NormalizationPretraiteur extends Pretraiteur {
         value = value.replaceAll("\\s+", " ").trim();
 
         nom.setNomNormaliser(value);
+        nom.setNomTraiter(List.of(value));
         return nom;
     }
 
