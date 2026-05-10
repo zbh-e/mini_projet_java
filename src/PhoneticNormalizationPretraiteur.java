@@ -2,42 +2,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public final class PhoneticNormalizationPreprocessor extends Preprocessor {
+public final class PhoneticNormalizationPretraiteur extends Pretraiteur {
 
     
     public record Rule(String pattern, String replacement) {
         public Rule {
             if (pattern == null || pattern.isBlank())
-                throw new IllegalArgumentException("pattern must not be blank");
+                throw new IllegalArgumentException("pattern ne doit pas être blank");
             if (replacement == null)
-                throw new IllegalArgumentException("replacement must not be null");
+                throw new IllegalArgumentException("replacement ne doit pas être null");
         }
     }
 
     private final List<Rule> rules;
 
-    public PhoneticNormalizationPreprocessor(List<Rule> rules) {
+    public PhoneticNormalizationPretraiteur(List<Rule> rules) {
         super("normalisation-phonetique");
         this.rules = List.copyOf(rules);
     }
 
     
-    public PhoneticNormalizationPreprocessor() {
+    public PhoneticNormalizationPretraiteur() {
         this(buildDefaultRules());
     }
 
     
 
     @Override
-    protected Nom doProcess(Nom nom) {
-        String value = nom.getNomNormalise();
+    protected Nom faireTraitement(Nom nom) {
+        String value = nom.getNomNormaliser();
 
         for (Rule rule : rules) {
             value = value.replace(rule.pattern(), rule.replacement());
         }
 
         value = value.replaceAll("\\s+", " ").trim();
-        nom.setNomNormalise(value);
+        nom.setNomNormaliser(value);
         return nom;
     }
 

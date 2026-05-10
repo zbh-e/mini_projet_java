@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
-public final class TokenizationPreprocessor extends Preprocessor {
+public final class TokenizationPretraiteur extends Pretraiteur {
 
     private static final Pattern DEFAULT_DELIMITER =
             Pattern.compile("[\\s\\-\\.'']+");
@@ -15,7 +15,7 @@ public final class TokenizationPreprocessor extends Preprocessor {
     private final Pattern     delimiter;
     private final Set<String> stopWords;
 
-    public TokenizationPreprocessor(Pattern delimiter, Set<String> stopWords) {
+    public TokenizationPretraiteur(Pattern delimiter, Set<String> stopWords) {
         super("tokenisation");
         this.delimiter = delimiter != null ? delimiter : DEFAULT_DELIMITER;
         this.stopWords = stopWords != null
@@ -26,21 +26,21 @@ public final class TokenizationPreprocessor extends Preprocessor {
                 : Set.of();
     }
 
-    public TokenizationPreprocessor() {
+    public TokenizationPretraiteur() {
         this(DEFAULT_DELIMITER, Set.of());
     }
 
     
-    public static TokenizationPreprocessor withCommonStopWords() {
+    public static TokenizationPretraiteur withCommonStopWords() {
         Set<String> sw = new HashSet<>(
                 Arrays.asList("ben", "bel", "el", "al", "de", "du", "le", "la",
                               "les", "dit", "ou", "et"));
-        return new TokenizationPreprocessor(DEFAULT_DELIMITER, sw);
+        return new TokenizationPretraiteur(DEFAULT_DELIMITER, sw);
     }
 
     @Override
-    protected Nom doProcess(Nom nom) {
-        String normalise = nom.getNomNormalise();
+    protected Nom faireTraitement(Nom nom) {
+        String normalise = nom.getNomNormaliser();
 
         List<String> tokens = Arrays.stream(delimiter.split(normalise))
                 .map(String::trim)
@@ -48,7 +48,7 @@ public final class TokenizationPreprocessor extends Preprocessor {
                 .filter(t -> !stopWords.contains(t.toLowerCase()))
                 .collect(Collectors.toUnmodifiableList());
 
-        nom.setNomTraite(tokens);
+        nom.setNomTraiter(tokens);
         return nom;
     }
 

@@ -1,7 +1,7 @@
 import java.util.regex.Pattern;
 
 
-public final class SpecialCharPreprocessor extends Preprocessor {
+public final class SpecialCharPretraiteur extends Pretraiteur {
 
     /** Caractères qui seront remplacés par un espace. */
     private static final Pattern REPLACE_BY_SPACE =
@@ -22,18 +22,18 @@ public final class SpecialCharPreprocessor extends Preprocessor {
      *                   est supprimé (mode strict) ; sinon seuls les
      *                   caractères explicitement listés sont traités.
      */
-    public SpecialCharPreprocessor(boolean strictMode) {
+    public SpecialCharPretraiteur(boolean strictMode) {
         super("caracteres-speciaux");
         this.strictMode = strictMode;
     }
 
-    public SpecialCharPreprocessor() {
+    public SpecialCharPretraiteur() {
         this(false);
     }
 
     @Override
-    protected Nom doProcess(Nom nom) {
-        String value = nom.getNomNormalise();
+    protected Nom faireTraitement(Nom nom) {
+        String value = nom.getNomNormaliser();
 
         if (strictMode) {
             // Remplacer tout ce qui n'est pas lettre / chiffre / espace
@@ -47,7 +47,7 @@ public final class SpecialCharPreprocessor extends Preprocessor {
         // Normalisation finale des espaces
         value = value.replaceAll("\\s+", " ").trim();
 
-        nom.setNomNormalise(value);
+        nom.setNomNormaliser(value);
         return nom;
     }
 
