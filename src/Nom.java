@@ -15,10 +15,8 @@ public class Nom {
     private final String id;
     private final String nomOriginal;
 
-    /** Valeur intermédiaire produite par les préprocesseurs de normalisation. */
     private String nomNormalise;
 
-    /** Tokens finaux produits par le préprocesseur de tokenisation. */
     private List<String> nomTraite;
 
     // ------------------------------------------------------------------ //
@@ -36,9 +34,6 @@ public class Nom {
         this.nomNormalise = nomOriginal; // point de départ de la normalisation
     }
 
-    /**
-     * Constructeur de commodité sans identifiant (id = "").
-     */
     public Nom(String nomOriginal) {
         this("", nomOriginal);
     }
