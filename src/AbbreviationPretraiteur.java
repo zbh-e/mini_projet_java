@@ -1,29 +1,30 @@
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
 
-public final class AbbreviationExpanderPreprocessor extends Preprocessor {
+public final class AbbreviationPretraiteur extends Pretraiteur {
 
     /** Dictionnaire d'abréviations → formes développées. */
     private final Map<String, String> dictionary;
 
-    public AbbreviationExpanderPreprocessor(Map<String, String> dictionary) {
+    public AbbreviationPretraiteur(Map<String, String> dictionary) {
         super("expansion-abreviations");
         Objects.requireNonNull(dictionary, "dictionary must not be null");
         this.dictionary = Collections.unmodifiableMap(new HashMap<>(dictionary));
     }
 
     /** Constructeur avec dictionnaire par défaut (prénoms, titres, voies). */
-    public AbbreviationExpanderPreprocessor() {
+    public AbbreviationPretraiteur() {
         this(buildDefaultDictionary());
     }
 
     @Override
-    protected Nom doProcess(Nom nom) {
-        String value = nom.getNomNormalise();
+    protected Nom faireTraitement(Nom nom) {
+        String value = nom.getNomNormaliser();
 
         for (Map.Entry<String, String> entry : dictionary.entrySet()) {
             // On remplace le mot entier uniquement (limites de mot \b)
@@ -33,7 +34,8 @@ public final class AbbreviationExpanderPreprocessor extends Preprocessor {
 
         // Nettoyage des espaces consécutifs éventuels
         value = value.replaceAll("\\s+", " ").trim();
-        nom.setNomNormalise(value);
+        nom.setNomNormaliser(value);
+        nom.setNomtraiter(List.of(value));
         return nom;
     }
 
@@ -56,10 +58,6 @@ public final class AbbreviationExpanderPreprocessor extends Preprocessor {
         map.put("st",   "saint");
         map.put("ste",  "sainte");
 
-        // Termes géographiques (utiles si le nom contient un lieu)
-        map.put("ave",  "avenue");
-        map.put("bd",   "boulevard");
-        map.put("rte",  "route");
 
         return map;
     }
