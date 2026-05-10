@@ -1,54 +1,31 @@
 import java.util.List;
 import java.util.Objects;
 
-<<<<<<< HEAD
-=======
-/**
- * Représente un nom dans le pipeline de traitement.
- *
- * Cycle de vie :
- *   1. nomOriginal  — valeur brute saisie / chargée
- *   2. nomNormalise — après les étapes de normalisation (casse, accents, espaces, etc.)
- *   3. nomTraite    — tokens finaux après tokenisation / filtrage
- */
->>>>>>> origin/zied
+
 public class Nom {
 
     private final String id;
     private final String nomOriginal;
 
-    /** Valeur intermédiaire produite par les préprocesseurs de normalisation. */
+    
     private String nomNormalise;
 
-    /** Tokens finaux produits par le préprocesseur de tokenisation. */
+    
     private List<String> nomTraite;
 
-    // ------------------------------------------------------------------ //
-    //  Constructeurs
-    // ------------------------------------------------------------------ //
-
-    /**
-     * Constructeur principal : crée un Nom à partir de son identifiant et
-     * de sa valeur brute. {@code nomNormalise} est initialisé à
-     * {@code nomOriginal} pour que les préprocesseurs puissent chaîner.
-     */
+    
     public Nom(String id, String nomOriginal) {
         this.id           = Objects.requireNonNull(id,          "id must not be null");
         this.nomOriginal  = Objects.requireNonNull(nomOriginal, "nomOriginal must not be null");
         this.nomNormalise = nomOriginal; // point de départ de la normalisation
     }
 
-    /**
-     * Constructeur de commodité sans identifiant (id = "").
-     */
+    
     public Nom(String nomOriginal) {
         this("", nomOriginal);
     }
 
-    // ------------------------------------------------------------------ //
-    //  Getters / Setters
-    // ------------------------------------------------------------------ //
-
+    
     public String getId() {
         return id;
     }
@@ -73,8 +50,6 @@ public class Nom {
         this.nomTraite = Objects.requireNonNull(nomTraite, "nomTraite must not be null");
     }
 
-<<<<<<< HEAD
-=======
     // ------------------------------------------------------------------ //
     //  Utilitaires
     // ------------------------------------------------------------------ //
@@ -85,5 +60,4 @@ public class Nom {
              + "', normalise='" + nomNormalise
              + "', traite=" + nomTraite + "}";
     }
->>>>>>> origin/zied
 }

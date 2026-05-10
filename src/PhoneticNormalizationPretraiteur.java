@@ -38,7 +38,7 @@ public final class PhoneticNormalizationPretraiteur extends Pretraiteur {
 
         value = value.replaceAll("\\s+", " ").trim();
         nom.setNomNormaliser(value);
-        nom.setNomtraiter(List.of(value));
+        nom.setNomTraiter(List.of(value));
         return nom;
     }
 

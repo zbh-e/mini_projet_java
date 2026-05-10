@@ -35,7 +35,7 @@ public final class AbbreviationPretraiteur extends Pretraiteur {
         // Nettoyage des espaces consécutifs éventuels
         value = value.replaceAll("\\s+", " ").trim();
         nom.setNomNormaliser(value);
-        nom.setNomtraiter(List.of(value));
+        nom.setNomTraiter(List.of(value));
         return nom;
     }
 
