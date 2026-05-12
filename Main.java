@@ -235,27 +235,16 @@ public class Main {
         GenerateurDesCandidats generateur = choisirGenerateur(choixGen);
 
         // Sélectionneur
-        System.out.println("\n" + MG + "  1" + R + ". Top N résultats");
-        System.out.println(MG + "  2" + R + ". Tous les résultats");
+        System.out.println("\n" + CY + "  === SÉLECTIONNEUR ===" + R);
+        System.out.println(MG + "  1" + R + ". Top N résultats");
+        System.out.println(MG + "  2" + R + ". résultats supeieur à un seuil");
+        System.out.println(MG + "  3" + R + ". Tous les résultats");
         System.out.print(GR + "  Choix [1] : " + R);
         int choixSel = lireEntier(1);
 
-        Selectionneur selectionneur;
+        Selectionneur selectionneur=choisirSelectionneur(choixSel);
         
-        switch (choixSel) {
-            case 1:
-                System.out.print(GR + "  Nombre de résultats par nom [5] : " + R);
-                int n = (int) lireDouble(5);
-                selectionneur = new SelectionneurParNombre(n);
-            case 2:
-                System.out.print(GR + "  Nombre de résultats par nom [5] : " + R);
-                Double npeka = lireDouble(0.68);
-                selectionneur = new SelectionneurParScore(npeka);
-            
-            case 3:
-            default:
-                selectionneur = new SelectionneurTous();
-        }
+        
 
         // Prétraiteurs
         List<IPretraiteur> pretraiteurs = List.of(
