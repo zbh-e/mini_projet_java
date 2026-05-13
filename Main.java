@@ -160,7 +160,15 @@ public class Main {
                             i + 1,
                             t.getNom2().getNomOriginal(),
                             t.getScore());
+                    
                 }
+                System.out.println("\n" + CY + " \n voulez vous sauvegarder les resultats tapez 1 si oui " + R);
+                int soll =lireEntier(1);
+                if (soll==1){
+                    Livreur livreur = new Livreur();
+                    livreur.livrer(resultats, "resultat.csv");
+                }
+
             }
         } catch (Exception e) {
             afficherErreur("Erreur lors de la recherche : " + e.getMessage());

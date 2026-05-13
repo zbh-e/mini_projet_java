@@ -1,0 +1,6 @@
+nom1,nom2,score
+Nom{id='recherche', original='bohmid el ayari', normalise='bohmid el ayari', traite=[bohmid, el, ayari]},Nom{id='606006', original='Ahmed El-Kyari', normalise='ahmed el kyari', traite=[ahmed, el, kyari]},0.8556
+Nom{id='recherche', original='bohmid el ayari', normalise='bohmid el ayari', traite=[bohmid, el, ayari]},Nom{id='286112', original='Mohamed El Hafyani', normalise='mohamed el hafyani', traite=[mohamed, el, hafyani]},0.8455
+Nom{id='recherche', original='bohmid el ayari', normalise='bohmid el ayari', traite=[bohmid, el, ayari]},Nom{id='183557', original='Mohamed EL AARAJ', normalise='mohamed el aaraj', traite=[mohamed, el, aaraj]},0.8353
+Nom{id='recherche', original='bohmid el ayari', normalise='bohmid el ayari', traite=[bohmid, el, ayari]},Nom{id='286055', original='Hamid El-Archi', normalise='hamid el arci', traite=[hamid, el, arci]},0.8307
+Nom{id='recherche', original='bohmid el ayari', normalise='bohmid el ayari', traite=[bohmid, el, ayari]},Nom{id='468534', original='Mohamad El Hajjar', normalise='mohamad el hajar', traite=[mohamad, el, hajar]},0.8265
