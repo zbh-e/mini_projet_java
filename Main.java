@@ -90,12 +90,12 @@ public class Main {
 
         // Choix du comparateur
         System.out.println("\n" + CY + "  === COMPARATEUR ===" + R);
-        System.out.println(MG + "  1" + R + ". Exact (après normalisation)");
-        System.out.println(MG + "  2" + R + ". Jaro-Winkler");
-        System.out.println(MG + "  3" + R + ". Levenshtein");
-        System.out.println(MG + "  4" + R + ". Hamming");
-        System.out.println(MG + "  5" + R + ". Jaccard");
-        System.out.println(MG + "  6" + R + ". Par champs (Jaro-Winkler)");
+        System.out.println(MG + "  1" + R + ". Exact __V0__ (après normalisation)");
+        System.out.println(MG + "  2" + R + ". Jaro-Winkler __V1__");
+        System.out.println(MG + "  3" + R + ". Levenshtein __V1__");
+        System.out.println(MG + "  4" + R + ". Hamming __V2__");
+        System.out.println(MG + "  5" + R + ". Jaccard __V2__");
+        System.out.println(MG + "  6" + R + ". Par champs (Jaro-Winkler) __V2__");
         System.out.print(GR + "  Choix [1] : " + R);
         int choixComp = lireEntier(1);
 
@@ -309,11 +309,12 @@ public class Main {
             case 3:
                 return new ComparateurDeNomComplet(new ComparateurLevenshtein());
             case 4:
-                return new ComparateurDeNomComplet(new ComparateurHamming());
+                return new ComparateurNomParChamp(new ComparateurHamming());
             case 5:
-                return new ComparateurDeNomComplet(new ComparateurJaccard());
+                return new ComparateurNomParChamp(new ComparateurLevenshtein());
             case 6:
                 return new ComparateurNomParChamp(new ComparateurJaroWinkler());
+            
             case 1:
             default:
                 return new ComparateurExact();
