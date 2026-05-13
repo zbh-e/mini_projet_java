@@ -224,12 +224,12 @@ public class Main {
         System.out.println("\n" + CY + "  === CONFIGURATION DE LA RECHERCHE ===" + R);
 
         // Comparateur
-        System.out.println(MG + "  1" + R + ". Exact (après normalisation)");
-        System.out.println(MG + "  2" + R + ". Jaro-Winkler");
-        System.out.println(MG + "  3" + R + ". Levenshtein");
-        System.out.println(MG + "  4" + R + ". Hamming");
-        System.out.println(MG + "  5" + R + ". Jaccard");
-        System.out.println(MG + "  6" + R + ". Par champs (Jaro-Winkler)");
+        System.out.println(MG + "  1" + R + ". Exact **V0**");
+        System.out.println(MG + "  2" + R + ". Jaro-Winkler **V1**");
+        System.out.println(MG + "  3" + R + ". Levenshtein **V1**");
+        System.out.println(MG + "  4" + R + ". Hamming **V2**");
+        System.out.println(MG + "  5" + R + ". Jaccard **V2**");
+        System.out.println(MG + "  6" + R + ". Par champs (Jaro-Winkler) **V2**");
         System.out.print(GR + "  Choix [1] : " + R);
         int choixComp = lireEntier(1);
 
@@ -268,7 +268,15 @@ public class Main {
         System.out.print(GR + "  Choix [1] : " + R);
         int choixPre = lireEntier(1);
 
+
+        System.out.println("\n" + CY + "  === Sauvegarder Les resultats?? tapez 1 si oui   ===" + R);
+
         List<IPretraiteur> pretraiteurs = choisirPretraiteurs(choixPre);
+        int soc = lireEntier(1);
+        if (soc==1){
+            Livreur ll= new Livreur();
+            ll.creerFichierVide("resultatParLot.csv");
+        }
 
         // Lancer les recherches par lot
         System.out.println("\n" + CY + B + "  Recherche par lot en cours...\n" + R);
@@ -283,6 +291,10 @@ public class Main {
 
             try {
                 List<Triplet> resultats = moteur.rechercher(database, nomRecherche.getNomOriginal());
+                if (soc==1){
+                    Livreur l=new Livreur();
+                    l.add(resultats, "ResultatParLot.csv");
+                }
 
                 if (resultats.isEmpty()) {
                     System.out.println(YL + "  Aucun résultat trouvé." + R);
@@ -297,17 +309,20 @@ public class Main {
                                 t.getNom2().getNomOriginal(),
                                 t.getScore());
                     }
+                    
                 }
                 System.out.println();
             } catch (Exception e) {
                 afficherErreur(
                         "Erreur lors de la recherche de '" + nomRecherche.getNomOriginal() + "' : " + e.getMessage());
             }
+            
         }
 
         System.out.println(CY + B + "=== RÉSUMÉ ===" + R);
         System.out.println("Noms recherchés : " + nomsARechercher.size());
         System.out.println("Total résultats : " + totalResultats);
+        
     }
 
     static ComparateurNom choisirComparateur(int choix) {
