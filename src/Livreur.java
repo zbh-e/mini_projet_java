@@ -13,8 +13,8 @@ public class Livreur {
             // Lignes de données
             for (Triplet t : triplets) {
                 writer.printf("%s,%s,%.4f%n",
-                    t.getNom1(),
-                    t.getNom2(),
+                    t.getNom1().getNomOriginal(),
+                    t.getNom2().getNomOriginal(),
                     t.getScore()
                 );
             }
