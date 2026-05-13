@@ -43,7 +43,7 @@ public class Main {
     static void afficherMenuPrincipal() {
         System.out.println();
         System.out.println(CY + B + "  ╔════════════════════════════════════════╗");
-        System.out.println("  ║   MOTEUR DE MATCHING DE NOMS            ║");
+        System.out.println("  ║   MOTEUR DE MATCHING DE NOMS           ║");
         System.out.println("  ╚════════════════════════════════════════╝" + R);
 
         if (database == null) {
@@ -105,7 +105,7 @@ public class Main {
         System.out.println("\n" + CY + "  === GÉNÉRATEUR DE CANDIDATS ===" + R);
         System.out.println(MG + "  1" + R + ". Tous les combinaisons ");
         System.out.println(MG + "  2" + R + ". Longueur (différence max 10)");
-        
+
         System.out.println(MG + "  3" + R + ". Par le nombre des caracteres en commun");
         System.out.print(GR + "  Choix [1] : " + R);
         int choixGen = lireEntier(1);
@@ -120,20 +120,22 @@ public class Main {
         System.out.print(GR + "  Choix [1] : " + R);
         int choixSel = lireEntier(1);
 
-        Selectionneur selectionneur=choisirSelectionneur(choixSel);
-        
+        Selectionneur selectionneur = choisirSelectionneur(choixSel);
+
         // Configuration des prétraiteurs
         System.out.println("\n" + CY + "  === PRÉTRAITEURS ===" + R);
-        System.out.println(YL + "  Normalization" + R);
-        System.out.println(YL + "  Abbreviation" + R);
-        System.out.println(YL + "  Phonetique" + R);
-        System.out.println(YL + "  Tokenization" + R);
+        System.out.println(MG + "  1" + R
+                + ". Pipeline standard (Normalization, SpecialChar, Abbreviation, Phonetique, Tokenization)");
+        System.out.println(MG + "  2" + R + ". Normalization seul");
+        System.out.println(MG + "  3" + R + ". Normalization + Abbreviation");
+        System.out.println(MG + "  4" + R + ". Normalization + Phonetique");
+        System.out.println(MG + "  5" + R + ". Normalization + Tokenization");
+        System.out.println(MG + "  6" + R + ". Personnaliser les prétraiteurs");
+        System.out.println(MG + "  7" + R + ". Aucun prétraitement");
+        System.out.print(GR + "  Choix [1] : " + R);
+        int choixPre = lireEntier(1);
 
-        List<IPretraiteur> pretraiteurs = new ArrayList<>();
-        pretraiteurs.add(new NormalizationPretraiteur());
-        pretraiteurs.add(new AbbreviationPretraiteur());
-        pretraiteurs.add(new PhoneticNormalizationPretraiteur());
-        pretraiteurs.add(new TokenizationPretraiteur());
+        List<IPretraiteur> pretraiteurs = choisirPretraiteurs(choixPre);
 
         // Lancer la recherche
         System.out.println("\n" + CY + B + "  Recherche en cours...\n" + R);
@@ -226,8 +228,9 @@ public class Main {
         ComparateurNom comparateur = choisirComparateur(choixComp);
 
         // Générateur
-        System.out.println("\n" + MG + "  1" + R + ". TOus COmbinaison");
-        System.out.println(MG + "  2" + R + ". Longueur de nom)");
+        System.out.println("\n" + CY + "  === GÉNÉRATEUR DE CANDIDATS ===" + R);
+        System.out.println("\n" + MG + "  1" + R + ". Tous COmbinaison");
+        System.out.println(MG + "  2" + R + ". Longueur de nom");
         System.out.println(MG + "  3" + R + ". par caractere en commun");
         System.out.print(GR + "  Choix [1] : " + R);
         int choixGen = lireEntier(1);
@@ -242,16 +245,22 @@ public class Main {
         System.out.print(GR + "  Choix [1] : " + R);
         int choixSel = lireEntier(1);
 
-        Selectionneur selectionneur=choisirSelectionneur(choixSel);
-        
-        
+        Selectionneur selectionneur = choisirSelectionneur(choixSel);
 
         // Prétraiteurs
-        List<IPretraiteur> pretraiteurs = List.of(
-                new NormalizationPretraiteur(),
-                new AbbreviationPretraiteur(),
-                new PhoneticNormalizationPretraiteur(),
-                new TokenizationPretraiteur());
+        System.out.println("\n" + CY + "  === PRÉTRAITEURS ===" + R);
+        System.out.println(MG + "  1" + R
+                + ". Pipeline standard (Normalization, SpecialChar, Abbreviation, Phonetique, Tokenization)");
+        System.out.println(MG + "  2" + R + ". Normalization seul");
+        System.out.println(MG + "  3" + R + ". Normalization + Abbreviation");
+        System.out.println(MG + "  4" + R + ". Normalization + Phonetique");
+        System.out.println(MG + "  5" + R + ". Normalization + Tokenization");
+        System.out.println(MG + "  6" + R + ". Personnaliser les prétraiteurs");
+        System.out.println(MG + "  7" + R + ". Aucun prétraitement");
+        System.out.print(GR + "  Choix [1] : " + R);
+        int choixPre = lireEntier(1);
+
+        List<IPretraiteur> pretraiteurs = choisirPretraiteurs(choixPre);
 
         // Lancer les recherches par lot
         System.out.println("\n" + CY + B + "  Recherche par lot en cours...\n" + R);
@@ -315,36 +324,95 @@ public class Main {
         switch (choix) {
             case 3:
                 System.out.println("\n donner le nombre des caracteres en commun minimal ");
-                int nombreCarac=lireEntier(5);
+                int nombreCarac = lireEntier(5);
                 return new GenerateurCommun(nombreCarac);
             case 2:
                 System.out.println("\n donner la difference de longueur de nom maximal ");
-                int LongueurMin=lireEntier(5);
+                int LongueurMin = lireEntier(5);
 
                 return new GenerateurLongeurDeNom(LongueurMin);
-            
+
             case 1:
             default:
                 return new ToutCombinaison();
         }
     }
+
     static Selectionneur choisirSelectionneur(int choix) {
         switch (choix) {
-            case 1 :
+            case 1:
                 System.out.println("\n donner le nombre des noms à afficher ");
-                int nombreNom=lireEntier(5);
+                int nombreNom = lireEntier(5);
                 return new SelectionneurParNombre(nombreNom);
             case 2:
                 System.out.println("\n donner le score minimal ");
-                double LongueurMin=lireDouble(0.7);
+                double LongueurMin = lireDouble(0.7);
 
                 return new SelectionneurParScore(LongueurMin);
-            
+
             case 3:
             default:
                 return new SelectionneurTous();
         }
     }
+
+    static List<IPretraiteur> choisirPretraiteurs(int choix) {
+        switch (choix) {
+            case 2:
+                return List.of(new NormalizationPretraiteur());
+            case 3:
+                return List.of(new NormalizationPretraiteur(), new AbbreviationPretraiteur());
+            case 4:
+                return List.of(new NormalizationPretraiteur(), new PhoneticNormalizationPretraiteur());
+            case 5:
+                return List.of(new NormalizationPretraiteur(), new TokenizationPretraiteur());
+            case 6:
+                return choisirPretraiteursPersonnalises();
+            case 7:
+                return List.of();
+            case 1:
+            default:
+                return List.of(
+                        new NormalizationPretraiteur(),
+                        new SpecialCharPretraiteur(),
+                        new AbbreviationPretraiteur(),
+                        new PhoneticNormalizationPretraiteur(),
+                        new TokenizationPretraiteur());
+        }
+    }
+
+    static List<IPretraiteur> choisirPretraiteursPersonnalises() {
+        List<IPretraiteur> pretraiteurs = new ArrayList<>();
+
+        if (choisirOuiNon("Normalization")) {
+            pretraiteurs.add(new NormalizationPretraiteur());
+        }
+        if (choisirOuiNon("SpecialChar")) {
+            pretraiteurs.add(new SpecialCharPretraiteur());
+        }
+        if (choisirOuiNon("Abbreviation")) {
+            pretraiteurs.add(new AbbreviationPretraiteur());
+        }
+        if (choisirOuiNon("Phonetique")) {
+            pretraiteurs.add(new PhoneticNormalizationPretraiteur());
+        }
+        if (choisirOuiNon("Tokenization")) {
+            pretraiteurs.add(new TokenizationPretraiteur());
+        }
+
+        if (pretraiteurs.isEmpty()) {
+            System.out.println(YL + "  Aucun prétraiteur sélectionné." + R);
+        }
+
+        return pretraiteurs;
+    }
+
+    static boolean choisirOuiNon(String label) {
+        System.out.print(GR + "  Activer " + label + " ? [O/n] : " + R);
+        String reponse = lireLigne().trim().toLowerCase();
+        return reponse.isEmpty() || reponse.startsWith("o") || reponse.startsWith("y");
+    }
+
     static String lireLigne() {
         try {
             if (sc.hasNextLine()) {

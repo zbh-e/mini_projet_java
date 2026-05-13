@@ -14,7 +14,6 @@ public abstract class Pretraiteur implements IPretraiteur {
     @Override
     public final Nom traiter(Nom nom) {
         Objects.requireNonNull(nom, "nom must not be null");
-        System.out.println("[" + getName() + "] traitement de : " + nom.getNomOriginal());
 
         Nom result = faireTraitement(nom);
 
