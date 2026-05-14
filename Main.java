@@ -1,4 +1,5 @@
-
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,24 +21,35 @@ public class Main {
     static String cheminRepertoire = "data";
 
     public static void main(String[] args) {
+        
         while (true) {
             afficherMenuPrincipal();
             int choix = lireEntier(0);
 
             if (choix == 1)
                 chargerCSV();
-            else if (choix == 2)
+            else if (choix == 2){
+                
                 lanceRecherche();
+                
+            }
+                
             else if (choix == 3)
                 afficherListe();
-            else if (choix == 4)
+                
+            else if (choix == 4){
+                
                 lanceRechercheParLot();
+                
+            }
+                
             else if (choix == 5) {
                 afficherAuRevoir();
                 return;
             } else
                 afficherErreur("Choix invalide.");
         }
+        
     }
 
     static void afficherMenuPrincipal() {
@@ -139,6 +151,8 @@ public class Main {
 
         // Lancer la recherche
         System.out.println("\n" + CY + B + "  Recherche en cours...\n" + R);
+        Instant start = Instant.now();
+        
 
         MoteurMatching moteur = new MoteurMatching(
                 pretraiteurs,
@@ -148,6 +162,10 @@ public class Main {
 
         try {
             List<Triplet> resultats = moteur.rechercher(database, nomStr);
+            Instant end = Instant.now();
+            Duration duration = Duration.between(start, end);
+            System.out.println("Execution time: " + duration.toMillis() + " ms");
+            
 
             if (resultats.isEmpty()) {
                 System.out.println(YL + "  Aucun résultat trouvé." + R);
@@ -280,8 +298,10 @@ public class Main {
 
         // Lancer les recherches par lot
         System.out.println("\n" + CY + B + "  Recherche par lot en cours...\n" + R);
+        Instant start = Instant.now();
 
         MoteurMatching moteur = new MoteurMatching(pretraiteurs, generateur, selectionneur, comparateur);
+        
 
         int totalResultats = 0;
         for (int i = 0; i < nomsARechercher.size(); i++) {
@@ -291,6 +311,9 @@ public class Main {
 
             try {
                 List<Triplet> resultats = moteur.rechercher(database, nomRecherche.getNomOriginal());
+                Instant end = Instant.now();
+                Duration duration = Duration.between(start, end);
+                System.out.println("Execution time: " + duration.toMillis() + " ms");
                 if (soc==1){
                     Livreur l=new Livreur();
                     l.add(resultats, "ResultatParLot.csv");
